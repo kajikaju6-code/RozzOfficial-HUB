@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome | OlliE Hub</title>
+    <title>OlliE Hub | Premium Dashboard</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+        :root {
+            --bg: #0a0a0f;
+            --text: #ffffff;
+            --accent: #00e5ff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
 
         * {
             margin: 0;
@@ -15,117 +23,200 @@
         }
 
         body {
-            background-color: #0a0a0f;
-            color: white;
-            height: 100vh;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            overflow: hidden;
-            /* Efek background grid tipis */
             background-image: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
+                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(160, 32, 240, 0.08), transparent 25%);
+            overflow-x: hidden;
+            padding: 40px 0;
         }
 
-        /* Container Logo */
-        .logo-container {
-            margin-bottom: 20px;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        /* GANTI UKURAN LOGO DI SINI */
-        .logo-container img {
-            width: 150px; 
-            height: 150px;
-            border-radius: 50%; /* Bikin logo jadi bulat. Hapus baris ini kalau mau kotak */
-            object-fit: cover;
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
-            border: 3px solid #00e5ff;
-        }
-
-        /* Teks Welcome */
-        .welcome-text {
+        /* Header Section */
+        .header {
+            text-align: center;
             margin-bottom: 40px;
-            animation: slideUp 1s ease-out;
+            animation: fadeInDown 1s ease-out;
         }
 
-        .welcome-text h1 {
+        .header h1 {
             font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: 2px;
-            background: linear-gradient(90deg, #00e5ff, #a020f0);
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00e5ff, #a020f0, #ff4500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.3));
         }
 
-        .welcome-text p {
+        .header p {
             color: #888;
-            font-size: 1rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
-        }
-
-        /* Tombol Masuk */
-        .btn-enter {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #000;
-            background-color: #00e5ff;
-            text-decoration: none;
-            border-radius: 50px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
-            animation: slideUp 1.2s ease-out;
-            display: inline-block;
+            font-weight: 700;
         }
 
-        .btn-enter:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.8);
-            background-color: #fff;
+        /* Menu Grid - Diubah biar 6 kotak di tengah */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 800px; /* Biar 3 kolom di laptop, 2 kolom di HP */
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
         }
+
+        /* Card Style (Glassmorphism) */
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 25px 15px;
+            text-decoration: none;
+            color: var(--text);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efek Garis Warna di Atas Kartu */
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--role-color);
+            transition: 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--role-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--role-glow);
+        }
+
+        .menu-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        /* Ikon & Teks */
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .menu-card:hover .icon {
+            transform: scale(1.2) rotate(5deg);
+            filter: drop-shadow(0 0 10px var(--role-color));
+        }
+
+        .menu-card h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .menu-card p {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        /* Variabel Warna per Role */
+        .assassin { --role-color: #a020f0; --role-glow: rgba(160, 32, 240, 0.5); }
+        .fighter  { --role-color: #ff4500; --role-glow: rgba(255, 69, 0, 0.5); }
+        .tank     { --role-color: #1e90ff; --role-glow: rgba(30, 144, 255, 0.5); }
+        .mage     { --role-color: #ff1493; --role-glow: rgba(255, 20, 147, 0.5); }
+        .marksman { --role-color: #32cd32; --role-glow: rgba(50, 205, 50, 0.5); }
+        .support  { --role-color: #ffd700; --role-glow: rgba(255, 215, 0, 0.5); } /* Warna Emas buat Support */
 
         /* Animasi */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideUp {
+        @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Responsive Mobile */
         @media (max-width: 600px) {
-            .welcome-text h1 { font-size: 1.8rem; }
-            .logo-container img { width: 120px; height: 120px; }
+            .header h1 { font-size: 2rem; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); } /* Paksa 2 kolom di HP */
         }
     </style>
 </head>
 <body>
 
-    <!-- Bagian Logo Custom -->
-    <div class="logo-container">
-        <!-- GANTI src="URL_LOGO_LU" DENGAN LINK FOTO LOGO LU -->
-        <img src="https://via.placeholder.com/150/000000/00e5ff?text=LOGO" alt="Logo Custom">
+    <div class="header">
+        <h1>OlliE Script Hub</h1>
+        <p>Premium Visual Injector</p>
     </div>
 
-    <!-- Bagian Teks Welcome -->
-    <div class="welcome-text">
-        <h1>Selamat Datang</h1>
-        <p>Di OlliE Premium Script Hub</p>
-    </div>
+    <div class="menu-grid">
+        <!-- Kartu Assassin -->
+        <a href="assassin.html" class="menu-card assassin">
+            <span class="icon">🗡️</span>
+            <h2>Assassin</h2>
+            <p>Burst & Agility</p>
+        </a>
 
-    <!-- Tombol Menuju Menu -->
-    <a href="menu.html" class="btn-enter">Masuk Sekarang</a>
+        <!-- Kartu Fighter -->
+        <a href="fighter.html" class="menu-card fighter">
+            <span class="icon">⚔️</span>
+            <h2>Fighter</h2>
+            <p>Duel & Sustain</p>
+        </a>
+
+        <!-- Kartu Tank -->
+        <a href="tank.html" class="menu-card tank">
+            <span class="icon">🛡️</span>
+            <h2>Tank</h2>
+            <p>Crowd Control</p>
+        </a>
+
+        <!-- Kartu Mage -->
+        <a href="mage.html" class="menu-card mage">
+            <span class="icon">🔮</span>
+            <h2>Mage</h2>
+            <p>Magic Burst</p>
+        </a>
+
+        <!-- Kartu Marksman -->
+        <a href="marksman.html" class="menu-card marksman">
+            <span class="icon">🏹</span>
+            <h2>Marksman</h2>
+            <p>Ranged Damage</p>
+        </a>
+
+        <!-- Kartu Support (BARU) -->
+        <a href="support.html" class="menu-card support">
+            <span class="icon">💖</span>
+            <h2>Support</h2>
+            <p>Heal & Roam</p>
+        </a>
+    </div>
 
 </body>
 </html>
