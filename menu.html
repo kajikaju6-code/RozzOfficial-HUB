@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | OlliE Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0f;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            /* Efek background grid tipis */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Container Logo */
+        .logo-container {
+            margin-bottom: 20px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* GANTI UKURAN LOGO DI SINI */
+        .logo-container img {
+            width: 150px; 
+            height: 150px;
+            border-radius: 50%; /* Bikin logo jadi bulat. Hapus baris ini kalau mau kotak */
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+            border: 3px solid #00e5ff;
+        }
+
+        /* Teks Welcome */
+        .welcome-text {
+            margin-bottom: 40px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .welcome-text h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00e5ff, #a020f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            color: #888;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Tombol Masuk */
+        .btn-enter {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #000;
+            background-color: #00e5ff;
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+            animation: slideUp 1.2s ease-out;
+            display: inline-block;
+        }
+
+        .btn-enter:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.8);
+            background-color: #fff;
+        }
+
+        /* Animasi */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .welcome-text h1 { font-size: 1.8rem; }
+            .logo-container img { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bagian Logo Custom -->
+    <div class="logo-container">
+        <!-- GANTI src="URL_LOGO_LU" DENGAN LINK FOTO LOGO LU -->
+        <img src="https://via.placeholder.com/150/000000/00e5ff?text=LOGO" alt="Logo Custom">
+    </div>
+
+    <!-- Bagian Teks Welcome -->
+    <div class="welcome-text">
+        <h1>Selamat Datang</h1>
+        <p>Di OlliE Premium Script Hub</p>
+    </div>
+
+    <!-- Tombol Menuju Menu -->
+    <a href="menu.html" class="btn-enter">Masuk Sekarang</a>
+
+</body>
+</html>
